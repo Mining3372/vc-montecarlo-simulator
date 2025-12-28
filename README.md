@@ -161,8 +161,8 @@ shinyApp(ui, server
 
 ## Author
 Arya Shah
-Georgia Tech – Business Administration (Finance / FinTech)
-Fintech • Venture Capital • Data-Driven Investing
+Georgia Tech – Business Administration (Finance / FinTech).
+
 Lets conntect: linkedin.com/in/aryashahcy
 
 ---
