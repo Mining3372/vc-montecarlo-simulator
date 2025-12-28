@@ -1,85 +1,134 @@
 # VC Monte Carlo Simulator
 
-![Status](https://img.shields.io/badge/Shiny-Deployed-brightgreen)
-![Language](https://img.shields.io/badge/R-ggplot2-blue)
-![Monte Carlo](https://img.shields.io/badge/Simulation-1000s%20of%20runs-orange)
-![Finance](https://img.shields.io/badge/Domain-Venture%20Capital-purple)
+[![Made with R](https://img.shields.io/badge/Made%20with-R-276DC3?logo=r&logoColor=white)](https://www.r-project.org/)
+[![Shiny App](https://img.shields.io/badge/Live%20App-Shiny-FF3C66?logo=rstudio&logoColor=white)](https://aryashah.shinyapps.io/vcmontecarlosim/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/aryashahprog/vc-montecarlo-simulator)](https://github.com/aryashahprog/vc-montecarlo-simulator/commits/main)
 
-This project simulates venture capital fund performance using Monte Carlo methods to understand the distribution of outcomes for LPs (returns, risk, and payoff shape). It models fund mechanics such as portfolio size, reserves, follow-on strategy, return distributions, and LP cash flow timing.
-
-👉 **Interactive Web App:** https://aryashah.shinyapps.io/vcmontecarlosim/  
-👉 **GitHub Repo:** https://github.com/aryashahprog/vc-montecarlo-simulator
+A Monte Carlo engine for simulating **venture capital fund performance** — including **MOIC distributions, IRR outcomes, follow-on strategies, and LP J-curve cash flows** — with an interactive **Shiny dashboard**.
 
 ---
 
-## Why This Project Exists
+##  What This Project Is
 
-Venture capital outcomes are highly **non-linear, power-law driven, and uncertainty-heavy**. Traditional finance tools rarely capture this reality.
+This project answers a simple question:
 
-This simulator helps VCs, LPs, and fintech analysts build intuition for:
+> *“If I ran thousands of VC funds with a given strategy, what would the distribution of outcomes actually look like?”*
 
-- What the distribution of net LP returns *actually* looks like
-- The probability of achieving break-even, 2x, 3x+ outcomes
-- How reserve strategy + follow-on policy drive upside
-- How the VC J-Curve behaves in practice vs textbooks
-- Why fund returns are dominated by tail outcomes
+It models a venture fund from the perspective of **LPs and the GP**:
 
-This is about **replacing point estimates with probabilistic thinking**.
+- Initial checks across a portfolio of startups  
+- Follow-on capital reserved and deployed into “top quartile” deals  
+- Exit timing based on outcome size (write-offs vs small wins vs big wins)  
+- Gross vs net distributions after fees & carry  
+- LP & GP cash flow timelines and the classic **J-curve**
 
----
-
-## Results — TL;DR
-
-> Numbers below are from a $50M simulated fund, ~30 initial deals, 40% reserves, top-quartile follow-ons, and realistic VC multiple distributions.
-
-✅ **Mean Net LP MOIC** ≈ 3.2x  
-✅ **Median Net LP MOIC** ≈ 3.0x  
-🎯 **Probability of ≥ 3x net fund** ≈ **57%**  
-📉 **Left-tail exists, but extreme downside is uncommon**  
-📈 **Right-tail dominates outcomes — classic VC behavior**
-
-Key intuition highlights:
-
-- Outcomes are **heavily right-skewed** — a small cluster of exceptional exits drives most upside  
-- A meaningful portion of simulated funds cluster around ~2–4x  
-- The “dream outcomes” (6–10x funds) exist but are rare  
-- Probability of truly poor performance still exists, reinforcing why LP diversification matters
+All of this is exposed through a **Shiny app** so you can play with parameters instead of reading a PDF.
 
 ---
 
-## Key Visualizations
+## 📌 Results TL;DR
 
-### 1️⃣ Net LP MOIC Distribution (Base R)
-![MOIC Histogram](images/moic_histogram_base.png)
+In a baseline configuration:
+
+- Fund size: **$50M**
+- 30 initial portfolio companies  
+- 40% of capital reserved for follow-ons  
+- Simple power-law style outcome distribution  
+- Follow-ons allocated to “top quartile” deals
+
+The simulator typically shows:
+
+- **Net LP MOIC** clustering around ~**3x**, with a long right tail  
+- **Probability of ≥ 3x net MOIC** ≈ **55–60%** in this scenario  
+- A clear **J-curve** where LPs are negative for the first few years before distributions start to dominate
+
+These are **illustrative only** – not investment advice or a forecast – but they make the trade-offs around **portfolio size, reserves, and follow-ons** much more concrete.
 
 ---
 
-### 2️⃣ Net LP MOIC Distribution + Density Curve (ggplot2)
-![Density Plot](images/moic_density_ggplot.png)
+## Why This Is Useful
+
+This project is designed to demonstrate:
+
+- **Quantitative intuition for venture**  
+  - Power-law outcomes, skewed return distributions, and tail risk  
+- **Ability to turn an idea into a working analytical tool**  
+  - Clean, modular R code (`vc_fund_sim_core.R`)  
+  - Monte Carlo engine + visualization layer + Shiny app  
+- **Communication of complex topics**  
+  - Visuals that LPs / PMs can understand at a glance  
+  - Clear documentation and live demo
+
+If you work in **VC, fintech, or data-driven investing**, this is the kind of tool I’d love to build more of.
 
 ---
 
-### 3️⃣ VC Fund J-Curve — LP Net Cash Flows
-Median + quantile bands across 1,000 simulated funds.
-![J Curve](images/jcurve.png)
+## Core Features
+
+### 1. VC Fund Engine (`vc_fund_sim_core.R`)
+
+- Simulates **one full VC fund** path:
+  - Committed capital, management fees, carry, hurdle
+  - Initial checks & follow-ons
+  - Exit years and multiples
+  - LP & GP cash flows by year
+- Pluggable outcome distributions:
+  - Discrete “bucketed” distribution (0x, 1x, 3x, 10x, 50x, etc.)
+  - Lognormal
+  - Pareto (power-law style fat tails)
+- Computes:
+  - **Gross & net LP IRR**
+  - **Gross & net LP MOIC**
+  - **Total GP carry**
+
+### 2. Monte Carlo Wrapper (`run_vc_monte_carlo()`)
+
+- Runs **thousands of simulated funds** with the chosen parameters  
+- Returns:
+  - Raw simulation objects
+  - A summary data frame for quick analysis and plotting
 
 ---
 
-## Model Design & Assumptions
+## Visuals
 
-- Fund size: **$50M**, 10-year life
-- ~**30 initial investments**
-- **40% reserve ratio** for follow-ons
-- Follow-on capital allocated to **top-quartile portfolio companies**
-- Exit distribution is **heavy-tailed / power-law influenced**
-- Modeled metrics include:
-  - Net MOIC
-  - Net IRR
-  - GP Carry economics
-  - Total LP Distributions
-- LP-first return modeling
+All charts are generated directly from the simulation outputs.
 
-> This isn’t meant to predict an individual fund — it demonstrates the *shape* of VC outcomes.
+### Net LP MOIC – Base Histogram
+
+![Net LP MOIC – Base Histogram](images/moic_histogram_base.png)
+
+Shows the raw distribution of fund outcomes (net MOIC). Most funds cluster around moderate outcomes, with a clear right tail.
+
+### Net LP MOIC – Density + Tail Shape
+
+![Net LP MOIC – Density + ggplot](images/moic_density_ggplot.png)
+
+A cleaner, publication-style view with density overlay to visualize skew and tail behavior.
+
+### VC Fund J-Curve (LP Net Cash Flows)
+
+![VC J-Curve](images/jcurve.png)
+
+Median and quantile bands for cumulative **net** cash flows to LPs across many simulated funds – a data-driven view of the classic VC J-curve.
+
+---
+
+## 🖥️ Interactive Shiny App
+
+Try the live app here:
+
+👉 **https://aryashah.shinyapps.io/vcmontecarlosim/**
+
+What you can do in the app:
+
+- Adjust **fund size, portfolio size, reserve ratio**
+- Switch **follow-on strategy** and outcome distribution
+- See how:
+  - The **MOIC distribution** shifts  
+  - The **probability of hitting ≥ X net MOIC** changes  
+  - The **LP J-curve** steepens or flattens
 
 ---
 
@@ -96,7 +145,6 @@ Median + quantile bands across 1,000 simulated funds.
 ## ▶️ Run Locally
 
 ```r
-
 # Clone
 # git clone https://github.com/aryashahprog/vc-montecarlo-simulator.git
 
@@ -107,23 +155,18 @@ install.packages(c("shiny", "ggplot2", "dplyr"))
 
 # Run app
 source("shinyapp.R")
-shinyApp(ui, server)
-```
+shinyApp(ui, server
+'''
 ---
 
 ## Author
-
-Arya Shah  
-Georgia Tech — Business Administration (Finance / FinTech)
-Fintech • Venture Capital • Data-Driven Investing
-
-Linkedin: linkedin.com/in/aryashahcy
+Arya Shah
+Georgia Tech – Business Administration (Finance / FinTech)
+Interests: Fintech • Venture Capital • Data-Driven Investing
+GitHub: @aryashahprog
+LinkedIn: linkedin.com/in/aryashahcy
 
 ---
 
-If you’d like to collaborate or are interested in VC / FinTech — feel free to reach out!
-
-Disclaimer:
-Educational + exploratory only.
-Not investment advice.
-Not intended to represent any specific fund.
+## License
+This project is licensed under the MIT License. See LICENSE for details.
