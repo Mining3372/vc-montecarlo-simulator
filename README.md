@@ -160,7 +160,7 @@ shinyApp(ui, server
 ---
 
 ## Author
-Arya Shah
+Arya Shah |
 Georgia Tech – Business Administration (Finance / FinTech).
 
 Lets connect 👉 [linkedin.com/in/aryashahcy](https://www.linkedin.com/in/aryashahcy/)
